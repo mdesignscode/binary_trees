@@ -42,8 +42,8 @@ int binary_tree_is_perfect(const binary_tree_t *tree)
 	c1 = lHeight1 == rHeight1 && lHeight2 == rHeight2;
 	c2 = lHeight1 == lHeight2 && rHeight1 == rHeight2;
 
-	if (!c1 || !c2)
-		return (0);
+	if (c1 && c2)
+		return (1);
 
-	return (1);
+	return (0);
 }
