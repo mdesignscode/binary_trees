@@ -26,6 +26,7 @@ int height(const binary_tree_t *node)
 int binary_tree_is_perfect(const binary_tree_t *tree)
 {
 	int lHeight1, rHeight1, lHeight2, rHeight2;
+	int c1, c2;
 
 	CHECK_N(tree);
 
@@ -38,8 +39,11 @@ int binary_tree_is_perfect(const binary_tree_t *tree)
 	lHeight2 = height(tree->right->left);
 	rHeight2 = height(tree->right->right);
 
-	if ((lHeight1 == rHeight1 && lHeight2 == rHeight2) && (lHeight1 == lHeight2 && rHeight1 == rHeight2))
-		return (1);
+	c1 = lHeight1 == rHeight1 && lHeight2 == rHeight2;
+	c2 = lHeight1 == lHeight2 && rHeight1 == rHeight2;
 
-	return (0);
+	if (!c1 || !c2)
+		return (0);
+
+	return (1);
 }
