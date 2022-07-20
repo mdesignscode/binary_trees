@@ -18,19 +18,6 @@ int height(const binary_tree_t *node)
 }
 
 /**
- * node_count - counts the number of nodes in a tree.
- * @tree: the tree to be counted.
- *
- * Return: the number of node.
- */
-int node_count(const binary_tree_t *tree)
-{
-	CHECK_N(tree);
-
-	return (1 + node_count(tree->left) + node_count(tree->right));
-}
-
-/**
  * binary_tree_is_perfect - checks if a binary tree is perfect.
  * @tree: a pointer to the root node of the tree to check.
  *
@@ -38,14 +25,20 @@ int node_count(const binary_tree_t *tree)
  */
 int binary_tree_is_perfect(const binary_tree_t *tree)
 {
-	int lHeight, rHeight;
+	int lHeight1, rHeight1, lHeight2, rHeight2;
 
 	CHECK_N(tree);
 
-	lHeight = height(tree->left);
-	rHeight = height(tree->right);
+	if (!tree->left || !tree->right)
+		return (0);
 
-	if (lHeight != rHeight || (!tree->left || !tree->right))
+	lHeight1 = height(tree->left->left);
+	rHeight1 = height(tree->left->right);
+
+	lHeight2 = height(tree->right->left);
+	rHeight2 = height(tree->right->right);
+
+	if (lHeight1 != rHeight1 || lHeight2 != rHeight2)
 		return (0);
 
 	return (1);
