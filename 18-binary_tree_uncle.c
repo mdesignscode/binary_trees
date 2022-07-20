@@ -17,9 +17,9 @@ binary_tree_t *binary_tree_uncle(binary_tree_t *node)
 
 	ancestor = node->parent->parent;
 
-	if (ancestor->right)
+	if (ancestor->right && (ancestor->right != node->parent))
 		return (ancestor->right);
-	if (ancestor->left)
+	if (ancestor->left && (ancestor->left != node->parent))
 		return (ancestor->left);
 
 	return (NULL);
